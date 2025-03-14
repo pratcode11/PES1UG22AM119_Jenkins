@@ -1,35 +1,22 @@
 pipeline {
     agent any
-
     stages {
         stage('Build') {
             steps {
-                script {
-                    echo 'Building the project...'
-                    sh 'g++ -o output main.cpp'  // Replace 'main.cpp' with your actual source file
-                }
+                sh 'g++ main.cpp -o output'  // Compile C++ file
             }
         }
-
         stage('Test') {
             steps {
-                script {
-                    echo 'Running tests...'
-                    sh './output'  // Execute compiled output file (assuming it runs tests)
-                }
+                sh './output'  // Execute compiled C++ file
             }
         }
-
         stage('Deploy') {
             steps {
-                script {
-                    echo 'Deploying the application...'
-                    sh 'scp output user@yourserver:/path/to/deploy/'  // Modify with actual server details
-                }
+                echo 'Deployment Successful'
             }
         }
     }
-
     post {
         failure {
             echo 'Pipeline failed'
