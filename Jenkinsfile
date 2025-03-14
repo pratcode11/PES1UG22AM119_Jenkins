@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'g++ main.cpp -o output'  // Compile C++ file
+                sh 'make'  // Use Makefile to compile
             }
         }
         stage('Test') {
             steps {
-                sh './output'  // Execute compiled C++ file
+                sh './output'  // Run the compiled executable
             }
         }
         stage('Deploy') {
